@@ -25,6 +25,7 @@ public class MesoCicle {
     private List<Workout> workouts;
 
     private Date startDate;
+
     private Date endDate;
 
     @ManyToOne

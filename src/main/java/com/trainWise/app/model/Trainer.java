@@ -14,6 +14,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 public class Trainer extends User{
+
     @OneToMany(mappedBy = "trainer")
     private List<Client> clientList;
 }

@@ -22,6 +22,7 @@ public class Client extends User{
     @ManyToOne
     @JoinColumn(name = "trainer_id")
     private Trainer trainer;
+
     @OneToMany
     private List<MesoCicle> mesoCicle;
 //    List<Workokout> worokoutsList;

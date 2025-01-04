@@ -13,6 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class Workout {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

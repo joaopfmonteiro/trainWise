@@ -12,6 +12,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class TrainingUnit {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
