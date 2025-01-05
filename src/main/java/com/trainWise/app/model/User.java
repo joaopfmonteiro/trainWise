@@ -26,8 +26,6 @@ public abstract class User {
 
     private Date birthDate;
 
-    private Role role;
-
     private double height;
 
     private double weight;
