@@ -1,19 +1,8 @@
-package com.trainWise.app.model;
-
-import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+package com.trainWise.app.dto;
 
 import java.util.Date;
 
-@MappedSuperclass
-@EqualsAndHashCode
-public abstract class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
-    private long id;
+public class UserDto {
 
     private String name;
 
@@ -26,14 +15,6 @@ public abstract class User {
     private double height;
 
     private double weight;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

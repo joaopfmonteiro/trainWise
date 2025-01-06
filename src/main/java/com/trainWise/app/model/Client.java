@@ -25,5 +25,7 @@ public class Client extends User{
 
     @OneToMany
     private List<MesoCicle> mesoCicle;
-//    List<Workokout> worokoutsList;
+
+    @OneToMany
+    private List<Workout> worokoutsList;
 }
