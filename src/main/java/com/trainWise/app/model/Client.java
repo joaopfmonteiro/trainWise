@@ -1,5 +1,7 @@
 package com.trainWise.app.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -19,13 +21,13 @@ import java.util.List;
 @NoArgsConstructor
 public class Client extends User{
 
-    @ManyToOne
-    @JoinColumn(name = "trainer_id")
-    private Trainer trainer;
+//    @ManyToOne
+//    @JoinColumn(name = "trainer_id")
+//    private Trainer trainer;
 
-    @OneToMany
-    private List<MesoCicle> mesoCicle;
-
-    @OneToMany
-    private List<Workout> worokoutsList;
+//    @OneToMany
+//    private List<MesoCicle> mesoCicle;
+//
+//    @OneToMany
+//    private List<Workout> worokoutsList;
 }

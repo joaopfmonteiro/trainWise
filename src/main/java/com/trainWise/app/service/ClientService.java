@@ -17,8 +17,9 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public Client saveClient(Client client){
+    public Client update(Client client){
         return clientRepository.save(client);
     }
+
 
 }

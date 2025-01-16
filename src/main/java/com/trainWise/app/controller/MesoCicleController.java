@@ -13,7 +13,7 @@ public class MesoCicleController {
     @Autowired
     MesoCicleService mesoCicleService;
 
-    @PostMapping("create")
+    @PostMapping()
     public ResponseEntity<MesoCicle> createMesoCicle(@RequestBody MesoCicle mesoCicle){
         MesoCicle newMesocicle = mesoCicleService.createMesoCicle(mesoCicle);
         return ResponseEntity.ok(mesoCicle);

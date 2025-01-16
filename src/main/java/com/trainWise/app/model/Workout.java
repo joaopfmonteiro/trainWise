@@ -1,5 +1,7 @@
 package com.trainWise.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,22 +22,19 @@ public class Workout {
 
     private Date day;
 
-    @ManyToOne
-    @JoinColumn(name = "meso_cicle_id")
-    private MesoCicle mesoCicle;
+//    @ManyToOne
+//    private MesoCicle mesoCicle;
+//
+//    @ManyToOne
+//    private Trainer trainer;
+//
+//    @ManyToOne
+//    private Client client;
+//
+//    @ManyToOne
+//    private SelfTrainer selfTrainer;
 
-    @ManyToOne
-    @JoinColumn(name = "trainer_id")
-    private Trainer trainer;
-
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
-
-    @ManyToOne
-    @JoinColumn(name = "self_trainer_id")
-    private SelfTrainer selfTrainer;
-
-    @OneToMany
+    @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<TrainingUnit> trainingUnit;
 }

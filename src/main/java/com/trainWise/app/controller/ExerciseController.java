@@ -1,12 +1,13 @@
 package com.trainWise.app.controller;
 
+import com.trainWise.app.dto.ExerciseMuscleDto;
+import com.trainWise.app.dto.ExerciseNameDto;
 import com.trainWise.app.model.Exercise;
 import com.trainWise.app.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Parameter;
 import java.util.List;
 
 @RestController
@@ -21,7 +22,17 @@ public class ExerciseController {
         return exerciseService.getAll();
     }
 
-    @PostMapping("/create")
+    @GetMapping("/search/name/{name}")
+    public List<ExerciseNameDto> searchByName(@PathVariable String name){
+        return exerciseService.searchByName(name);
+    }
+
+    @GetMapping("/search/muscle/{muscle}")
+    public List<ExerciseMuscleDto> searchByMuscle(@PathVariable String muscle){
+        return exerciseService.searchByMuscle(muscle);
+    }
+
+    @PostMapping()
     public ResponseEntity<Exercise> createExercise(@RequestBody Exercise exercise){
         Exercise newExercise = exerciseService.createExercise(exercise);
         return ResponseEntity.ok(newExercise);

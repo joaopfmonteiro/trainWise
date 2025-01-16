@@ -1,5 +1,7 @@
 package com.trainWise.app.service;
 
+import com.trainWise.app.dto.ExerciseMuscleDto;
+import com.trainWise.app.dto.ExerciseNameDto;
 import com.trainWise.app.model.Exercise;
 import com.trainWise.app.repository.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,13 @@ public class ExerciseService {
 
     public void update(Exercise exercise){
         exerciseRepository.save(exercise);
+    }
+
+    public List<ExerciseNameDto> searchByName(String exerciseName){
+        return exerciseRepository.searchExercisesName(exerciseName);
+    }
+    public List<ExerciseMuscleDto> searchByMuscle(String exerciseMuscle){
+        return exerciseRepository.searchExercisesMuscle(exerciseMuscle);
     }
 
 }

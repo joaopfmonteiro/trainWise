@@ -1,5 +1,6 @@
 package com.trainWise.app.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
@@ -14,10 +15,11 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class SelfTrainer extends User{
-    @OneToMany
-    private List<MesoCicle> mesoCicle;
 
-    @OneToMany
-    private List<Workout> worokoutsList;
+//    @OneToMany
+//    private List<MesoCicle> mesoCicle;
+//
+//    @OneToMany
+//    private List<Workout> worokoutsList;
 
 }

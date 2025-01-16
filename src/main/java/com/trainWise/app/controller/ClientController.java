@@ -19,10 +19,9 @@ public class ClientController {
         return clientService.getAll();
     }
 
-    @PostMapping()
-    public Client createClient(@RequestBody Client client){
-        return clientService.saveClient(client);
+    @PutMapping("/{id}")
+    public Client update(@RequestBody Client client, @PathVariable long id){
+        return clientService.update(client);
     }
-
 
 }
