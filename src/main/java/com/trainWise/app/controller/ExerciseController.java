@@ -27,10 +27,10 @@ public class ExerciseController {
         return exerciseService.searchByName(name);
     }
 
-    @GetMapping("/search/muscle/{muscle}")
-    public List<ExerciseMuscleDto> searchByMuscle(@PathVariable String muscle){
-        return exerciseService.searchByMuscle(muscle);
-    }
+//    @GetMapping("/search/muscle/{muscle}")
+//    public List<ExerciseMuscleDto> searchByMuscle(@PathVariable String muscle){
+//        return exerciseService.searchByMuscle(muscle);
+//    }
 
     @PostMapping()
     public ResponseEntity<Exercise> createExercise(@RequestBody Exercise exercise){
@@ -49,10 +49,10 @@ public class ExerciseController {
         return ResponseEntity.ok(exerciseNameDto);
     }
 
-    @GetMapping("order-by-muscle")
-    public ResponseEntity<List<ExerciseMuscleDto>> orderByMuscle(){
-        List<ExerciseMuscleDto> exerciseMuscleDto = exerciseService.oderByMuscle();
-        return ResponseEntity.ok(exerciseMuscleDto);
-}
+//    @GetMapping("order-by-muscle")
+//    public ResponseEntity<List<ExerciseMuscleDto>> orderByMuscle(){
+//        List<ExerciseMuscleDto> exerciseMuscleDto = exerciseService.oderByMuscle();
+//        return ResponseEntity.ok(exerciseMuscleDto);
+//}
 
     }

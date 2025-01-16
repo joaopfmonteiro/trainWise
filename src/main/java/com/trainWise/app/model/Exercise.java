@@ -1,7 +1,10 @@
 package com.trainWise.app.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.trainWise.app.model.enums.ExerciseEquipment;
+import com.trainWise.app.model.enums.ExerciseType;
+import com.trainWise.app.model.enums.Muscle;
+import com.trainWise.app.model.enums.MuscleGroup;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,11 +31,45 @@ public class Exercise {
 
     String name;
 
-    String muscle;
-
     String details;
 
     String img;
 
     String video;
+
+    @ElementCollection(targetClass = Muscle.class)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "exercise_muscles", joinColumns = @JoinColumn(name = "exercise_id"))
+    @Column(name = "muscle")
+    List<Muscle> muscle;
+
+    @ElementCollection(targetClass = MuscleGroup.class)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "exercise_muscle_groups", joinColumns = @JoinColumn(name = "exercise_id"))  // Nome diferente
+    @Column(name = "muscle_group")
+    List<MuscleGroup> muscleGroup;
+
+    @ElementCollection(targetClass = ExerciseType.class)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "exercise_type", joinColumns = @JoinColumn(name = "exercise_id"))  // Nome diferente
+    @Column(name = "exercise_type")
+    List<ExerciseType> exerciseTypes;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "equipment")
+    private ExerciseEquipment equipment;
+
+    public Exercise(String name, List<Muscle> muscle, List<MuscleGroup> muscleGroup,
+                    List<ExerciseType> exerciseTypes, ExerciseEquipment equipment,
+                    String details, String img, String video) {
+        this.name = name;
+        this.muscle = muscle;
+        this.muscleGroup = muscleGroup;
+        this.exerciseTypes = exerciseTypes;
+        this.equipment = equipment;
+        this.details = details;
+        this.img = img;
+        this.video = video;
+    }
+
 }

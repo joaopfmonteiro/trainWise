@@ -31,16 +31,16 @@ public class ExerciseService {
         return exerciseRepository.searchExercisesName(exerciseName);
     }
 
-    public List<ExerciseMuscleDto> searchByMuscle(String exerciseMuscle){
-        return exerciseRepository.searchExercisesMuscle(exerciseMuscle);
-    }
+//    public List<ExerciseMuscleDto> searchByMuscle(String exerciseMuscle){
+//        return exerciseRepository.searchExercisesMuscle(exerciseMuscle);
+//    }
 
     public List<ExerciseNameDto> orderByName(){
         return exerciseRepository.orderByName();
     }
 
-    public List<ExerciseMuscleDto> oderByMuscle(){
-        return exerciseRepository.orderByMuscle();
-    }
+//    public List<ExerciseMuscleDto> oderByMuscle(){
+//        return exerciseRepository.orderByMuscle();
+//    }
 
 }
