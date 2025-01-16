@@ -18,10 +18,19 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
             "WHERE LOWER(e.name) LIKE LOWER(CONCAT(:searchTerm, '%'))")
     List<ExerciseNameDto> searchExercisesName(@Param("searchTerm") String searchTerm);
 
+    @Query("SELECT new com.trainWise.app.dto.ExerciseNameDto(e.id, e.name) " +
+            "FROM Exercise e " +
+            "ORDER BY e.name ASC")
+    List<ExerciseNameDto> orderByName();
 
     @Query("SELECT new com.trainWise.app.dto.ExerciseMuscleDto(e.id, e.muscle) " +
             "FROM Exercise e " +
             "WHERE LOWER(e.muscle) LIKE LOWER(CONCAT(:searchTerm, '%'))")
     List<ExerciseMuscleDto> searchExercisesMuscle(@Param("searchTerm") String searchTerm);
+
+    @Query("SELECT new com.trainWise.app.dto.ExerciseMuscleDto(e.id, e.muscle) " +
+            "FROM Exercise e " +
+            "ORDER BY e.muscle ASC")
+    List<ExerciseMuscleDto> orderByMuscle();
 
 }

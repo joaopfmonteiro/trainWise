@@ -42,4 +42,17 @@ public class ExerciseController {
     public void updateExercise(@RequestBody Exercise exercise, @PathVariable Long id){
         exerciseService.update(exercise);
     }
+
+    @GetMapping("order-by-name")
+    public ResponseEntity<List<ExerciseNameDto>> oderByName(){
+        List<ExerciseNameDto> exerciseNameDto = exerciseService.orderByName();
+        return ResponseEntity.ok(exerciseNameDto);
+    }
+
+    @GetMapping("order-by-muscle")
+    public ResponseEntity<List<ExerciseMuscleDto>> orderByMuscle(){
+        List<ExerciseMuscleDto> exerciseMuscleDto = exerciseService.oderByMuscle();
+        return ResponseEntity.ok(exerciseMuscleDto);
 }
+
+    }
