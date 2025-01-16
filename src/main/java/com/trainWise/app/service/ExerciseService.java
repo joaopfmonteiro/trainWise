@@ -3,11 +3,13 @@ package com.trainWise.app.service;
 import com.trainWise.app.dto.ExerciseMuscleDto;
 import com.trainWise.app.dto.ExerciseNameDto;
 import com.trainWise.app.model.Exercise;
+import com.trainWise.app.model.enums.ExerciseEquipment;
 import com.trainWise.app.repository.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ExerciseService {
@@ -31,16 +33,24 @@ public class ExerciseService {
         return exerciseRepository.searchExercisesName(exerciseName);
     }
 
-//    public List<ExerciseMuscleDto> searchByMuscle(String exerciseMuscle){
-//        return exerciseRepository.searchExercisesMuscle(exerciseMuscle);
-//    }
+    public List<Exercise> getExercisesByEquipment(List<String> equipments) {
+        System.out.println("🔍 Equipamentos recebidos (Strings): " + equipments);
+
+        // Converte os valores de String para Enum
+        List<ExerciseEquipment> equipmentEnums = equipments.stream()
+                .map(e -> ExerciseEquipment.valueOf(e.toUpperCase())) // Converte para Enum
+                .collect(Collectors.toList());
+
+        List<Exercise> exercises = exerciseRepository.filterByEquipment(equipmentEnums);
+
+        System.out.println("✅ Exercícios encontrados: " + exercises);
+        return exercises;
+    }
+
+
 
     public List<ExerciseNameDto> orderByName(){
         return exerciseRepository.orderByName();
     }
-
-//    public List<ExerciseMuscleDto> oderByMuscle(){
-//        return exerciseRepository.orderByMuscle();
-//    }
 
 }

@@ -1,8 +1,8 @@
 package com.trainWise.app.repository;
 
-import com.trainWise.app.dto.ExerciseMuscleDto;
 import com.trainWise.app.dto.ExerciseNameDto;
 import com.trainWise.app.model.Exercise;
+import com.trainWise.app.model.enums.ExerciseEquipment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -23,14 +23,8 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
             "ORDER BY e.name ASC")
     List<ExerciseNameDto> orderByName();
 
-//    @Query("SELECT new com.trainWise.app.dto.ExerciseMuscleDto(e.id, e.muscle) " +
-//            "FROM Exercise e " +
-//            "WHERE LOWER(e.muscle) LIKE LOWER(CONCAT(:searchTerm, '%'))")
-//    List<ExerciseMuscleDto> searchExercisesMuscle(@Param("searchTerm") String searchTerm);
-
-//    @Query("SELECT new com.trainWise.app.dto.ExerciseMuscleDto(e.id, e.muscle) " +
-//            "FROM Exercise e " +
-//            "ORDER BY e.muscle ASC")
-//    List<ExerciseMuscleDto> orderByMuscle();
+    @Query("SELECT e FROM Exercise e " +
+            "WHERE e.equipment IN (:equipments)")
+    List<Exercise> filterByEquipment(@Param("equipments") List<ExerciseEquipment> equipments);
 
 }

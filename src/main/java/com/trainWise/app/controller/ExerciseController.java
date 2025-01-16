@@ -6,6 +6,7 @@ import com.trainWise.app.model.Exercise;
 import com.trainWise.app.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,11 +28,6 @@ public class ExerciseController {
         return exerciseService.searchByName(name);
     }
 
-//    @GetMapping("/search/muscle/{muscle}")
-//    public List<ExerciseMuscleDto> searchByMuscle(@PathVariable String muscle){
-//        return exerciseService.searchByMuscle(muscle);
-//    }
-
     @PostMapping()
     public ResponseEntity<Exercise> createExercise(@RequestBody Exercise exercise){
         Exercise newExercise = exerciseService.createExercise(exercise);
@@ -49,10 +45,10 @@ public class ExerciseController {
         return ResponseEntity.ok(exerciseNameDto);
     }
 
-//    @GetMapping("order-by-muscle")
-//    public ResponseEntity<List<ExerciseMuscleDto>> orderByMuscle(){
-//        List<ExerciseMuscleDto> exerciseMuscleDto = exerciseService.oderByMuscle();
-//        return ResponseEntity.ok(exerciseMuscleDto);
-//}
-
+    @GetMapping("/filter")
+    public List<Exercise> filterExercisesByEquipment(@RequestParam MultiValueMap<String, String> params) {
+        List<String> equipments = params.get("equipments"); // Converte corretamente para lista
+        System.out.println("🔍 Equipamentos recebidos: " + equipments);
+        return exerciseService.getExercisesByEquipment(equipments);
     }
+}
