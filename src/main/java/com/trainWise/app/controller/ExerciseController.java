@@ -46,9 +46,9 @@ public class ExerciseController {
     }
 
     @GetMapping("/filter")
-    public List<Exercise> filterExercisesByEquipment(@RequestParam MultiValueMap<String, String> params) {
-        List<String> equipments = params.get("equipments"); // Converte corretamente para lista
-        System.out.println("🔍 Equipamentos recebidos: " + equipments);
-        return exerciseService.getExercisesByEquipment(equipments);
+    public ResponseEntity<List<Exercise>> filterExercisesByEquipment(@RequestParam MultiValueMap<String, String> params) {
+        List<String> equipments = params.get("equipments");
+        List<Exercise> listEquipments = exerciseService.getExercisesByEquipment(equipments);
+        return ResponseEntity.ok(listEquipments);
     }
 }

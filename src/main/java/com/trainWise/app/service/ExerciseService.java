@@ -34,16 +34,11 @@ public class ExerciseService {
     }
 
     public List<Exercise> getExercisesByEquipment(List<String> equipments) {
-        System.out.println("🔍 Equipamentos recebidos (Strings): " + equipments);
-
-        // Converte os valores de String para Enum
         List<ExerciseEquipment> equipmentEnums = equipments.stream()
-                .map(e -> ExerciseEquipment.valueOf(e.toUpperCase())) // Converte para Enum
+                .map(e -> ExerciseEquipment.valueOf(e.toUpperCase()))
                 .collect(Collectors.toList());
-
         List<Exercise> exercises = exerciseRepository.filterByEquipment(equipmentEnums);
 
-        System.out.println("✅ Exercícios encontrados: " + exercises);
         return exercises;
     }
 
