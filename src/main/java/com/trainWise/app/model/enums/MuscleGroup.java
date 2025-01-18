@@ -11,10 +11,10 @@ public enum MuscleGroup {
     CORE("Core"),
     LEGS("Legs");
 
-    private final String muscleGrup;
+    private final String muscleGroup;
 
-    MuscleGroup(String muscleGrup) {
-        this.muscleGrup = muscleGrup;
+    MuscleGroup(String muscleGroup) {
+        this.muscleGroup = muscleGroup;
     }
 
 }

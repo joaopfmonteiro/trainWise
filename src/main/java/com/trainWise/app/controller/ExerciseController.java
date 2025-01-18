@@ -3,6 +3,7 @@ package com.trainWise.app.controller;
 import com.trainWise.app.dto.ExerciseMuscleDto;
 import com.trainWise.app.dto.ExerciseNameDto;
 import com.trainWise.app.model.Exercise;
+import com.trainWise.app.model.enums.MuscleGroup;
 import com.trainWise.app.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -51,4 +52,26 @@ public class ExerciseController {
         List<Exercise> listEquipments = exerciseService.getExercisesByEquipment(equipments);
         return ResponseEntity.ok(listEquipments);
     }
+
+    @GetMapping("/filterByType")
+    public ResponseEntity<List<Exercise>> filterExercisesByType(@RequestParam MultiValueMap<String, String> exerciseTypes) {
+        List<String> getExerciseTypes = exerciseTypes.get("exerciseType");
+        List<Exercise> listExerciseTypes = exerciseService.getExercisesByExerciseType(getExerciseTypes);
+        return ResponseEntity.ok(listExerciseTypes);
+    }
+
+    @GetMapping("/filterByMuscle")
+    public ResponseEntity<List<Exercise>> filterExercisesByExerciseMuscle(@RequestParam MultiValueMap<String, String> muscle) {
+        List<String> getMuscles = muscle.get("muscle");
+        List<Exercise> listOfMuscles = exerciseService.getExercisesByExerciseMuscle(getMuscles);
+        return ResponseEntity.ok(listOfMuscles);
+    }
+
+    @GetMapping("/filterByMuscleGroup")
+    public ResponseEntity<List<Exercise>> filterExercisesByExerciseMuscleGroup(@RequestParam MultiValueMap<String, String> muscleGroup) {
+        List<String> getMusclesGroup = muscleGroup.get("muscle_group");
+        List<Exercise> listOfMuscles = exerciseService.getExercisesByExerciseMuscleGroup(getMusclesGroup);
+        return ResponseEntity.ok(listOfMuscles);
+    }
+
 }

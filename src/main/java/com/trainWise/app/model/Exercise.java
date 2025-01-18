@@ -45,13 +45,13 @@ public class Exercise {
 
     @ElementCollection(targetClass = MuscleGroup.class)
     @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "exercise_muscle_groups", joinColumns = @JoinColumn(name = "exercise_id"))  // Nome diferente
+    @CollectionTable(name = "exercise_muscle_groups", joinColumns = @JoinColumn(name = "exercise_id"))
     @Column(name = "muscle_group")
     List<MuscleGroup> muscleGroup;
 
     @ElementCollection(targetClass = ExerciseType.class)
     @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "exercise_type", joinColumns = @JoinColumn(name = "exercise_id"))  // Nome diferente
+    @CollectionTable(name = "exercise_type", joinColumns = @JoinColumn(name = "exercise_id"))
     @Column(name = "exercise_type")
     List<ExerciseType> exerciseTypes;
 
