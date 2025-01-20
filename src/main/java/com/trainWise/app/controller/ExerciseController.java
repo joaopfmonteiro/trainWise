@@ -1,9 +1,7 @@
 package com.trainWise.app.controller;
 
-import com.trainWise.app.dto.ExerciseMuscleDto;
 import com.trainWise.app.dto.ExerciseNameDto;
 import com.trainWise.app.model.Exercise;
-import com.trainWise.app.model.enums.MuscleGroup;
 import com.trainWise.app.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
