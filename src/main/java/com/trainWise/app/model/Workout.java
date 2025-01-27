@@ -24,8 +24,8 @@ public class Workout {
 
     private Date day;
 
-//    @ManyToOne
-//    private MesoCicle mesoCicle;
+    @ManyToOne
+    private MesoCicle mesoCicle;
 //
 //    @ManyToOne
 //    private Trainer trainer;

@@ -1,6 +1,7 @@
 package com.trainWise.app.config;
 
 import com.trainWise.app.model.Exercise;
+import com.trainWise.app.model.MesoCicle;
 import com.trainWise.app.model.TrainingUnit;
 import com.trainWise.app.model.Workout;
 import com.trainWise.app.model.enums.ExerciseEquipment;
@@ -8,15 +9,15 @@ import com.trainWise.app.model.enums.ExerciseType;
 import com.trainWise.app.model.enums.Muscle;
 import com.trainWise.app.model.enums.MuscleGroup;
 import com.trainWise.app.repository.ExerciseRepository;
+import com.trainWise.app.repository.MesoCicleRepository;
 import com.trainWise.app.repository.TrainingUnitRepository;
 import com.trainWise.app.repository.WorkoutRepository;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.cglib.core.Local;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.swing.text.html.Option;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -28,8 +29,10 @@ public class DataInitializer {
     @Bean
     CommandLineRunner initExercises(ExerciseRepository exerciseRepository,
                                     TrainingUnitRepository trainingUnitRepository,
-                                    WorkoutRepository workoutRepository) {
+                                    WorkoutRepository workoutRepository,
+                                    MesoCicleRepository mesoCicleRepository) {
         return args -> {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             if (exerciseRepository.count() == 0) {
                 List<Exercise> exercises = Arrays.asList(
                         new Exercise("Deadlift",
@@ -77,9 +80,7 @@ public class DataInitializer {
                 trainingUnitRepository.saveAll(trainingUnits);
             }
             if(workoutRepository.count() == 0){
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 Date workoutDate = dateFormat.parse("2024-01-27");
-                Optional<TrainingUnit> trainingUnit = trainingUnitRepository.findById(1l);
                 List<Workout> workouts = Arrays.asList(
                         new Workout(
                                 workoutDate
@@ -87,6 +88,18 @@ public class DataInitializer {
                 );
                 workoutRepository.saveAll(workouts);
                 workoutRepository.addTrainingUnitToWorkout(1l,1l);
+            }
+            if(mesoCicleRepository.count() == 0){
+                Date mesoClicleBegin = dateFormat.parse("2024-01-01");
+                Date mesoClicleEnd =  dateFormat.parse("2024-06-01");
+                List<MesoCicle> mesoCicles = Arrays.asList(
+                        new MesoCicle(
+                                "Hipertrofia Avançada",
+                                mesoClicleBegin,
+                                mesoClicleEnd
+                        )
+                );
+                mesoCicleRepository.saveAll(mesoCicles);
             }
         };
     }

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,12 +21,18 @@ public class MesoCicle {
 
     private String mesoCicleName;
 
-//    @OneToMany(mappedBy = "mesoCicle", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Workout> workouts;
+    @OneToMany(mappedBy = "mesoCicle", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Workout> workouts;
 
     private Date startDate;
 
     private Date endDate;
+
+    public MesoCicle(String name, Date mesoClicleBegin, Date mesoClicleEnd) {
+        this.mesoCicleName = name;
+        this.startDate = mesoClicleBegin;
+        this.endDate = mesoClicleEnd;
+    }
 
 //    @ManyToOne
 //    @JoinColumn(name = "client_id", nullable = false)
