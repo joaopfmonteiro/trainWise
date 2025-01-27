@@ -1,7 +1,6 @@
 package com.trainWise.app.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,10 +17,6 @@ public class TrainingUnit {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "meso_cicle_id")
-//    private MesoCicle mesoCicle;
-
     @ManyToOne
     @JsonBackReference
     @JoinColumn(name = "workout_id")
@@ -35,4 +30,11 @@ public class TrainingUnit {
     private int set;
 
     private double weight;
+
+    public TrainingUnit( Exercise exercise, int reps, int set, double weight) {
+        this.exercise = exercise;
+        this.reps = reps;
+        this.set = set;
+        this.weight = weight;
+    }
 }

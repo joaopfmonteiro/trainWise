@@ -1,23 +1,34 @@
 package com.trainWise.app.config;
 
 import com.trainWise.app.model.Exercise;
+import com.trainWise.app.model.TrainingUnit;
+import com.trainWise.app.model.Workout;
 import com.trainWise.app.model.enums.ExerciseEquipment;
 import com.trainWise.app.model.enums.ExerciseType;
 import com.trainWise.app.model.enums.Muscle;
 import com.trainWise.app.model.enums.MuscleGroup;
 import com.trainWise.app.repository.ExerciseRepository;
+import com.trainWise.app.repository.TrainingUnitRepository;
+import com.trainWise.app.repository.WorkoutRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.cglib.core.Local;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Configuration
-public class ExerciseInitializer {
+public class DataInitializer {
 
     @Bean
-    CommandLineRunner initExercises(ExerciseRepository exerciseRepository) {
+    CommandLineRunner initExercises(ExerciseRepository exerciseRepository,
+                                    TrainingUnitRepository trainingUnitRepository,
+                                    WorkoutRepository workoutRepository) {
         return args -> {
             if (exerciseRepository.count() == 0) {
                 List<Exercise> exercises = Arrays.asList(
@@ -52,6 +63,30 @@ public class ExerciseInitializer {
 
                 exerciseRepository.saveAll(exercises);
                 System.out.println("Exercises have been load!");
+            }
+            if (trainingUnitRepository.count() == 0){
+                Optional<Exercise> exercise = exerciseRepository.findById(1l);
+                List<TrainingUnit> trainingUnits = Arrays.asList(
+                        new TrainingUnit(
+                                exercise.get(),
+                                3,
+                                3,
+                                3
+                        )
+                );
+                trainingUnitRepository.saveAll(trainingUnits);
+            }
+            if(workoutRepository.count() == 0){
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                Date workoutDate = dateFormat.parse("2024-01-27");
+                Optional<TrainingUnit> trainingUnit = trainingUnitRepository.findById(1l);
+                List<Workout> workouts = Arrays.asList(
+                        new Workout(
+                                workoutDate
+                        )
+                );
+                workoutRepository.saveAll(workouts);
+                workoutRepository.addTrainingUnitToWorkout(1l,1l);
             }
         };
     }
