@@ -11,6 +11,10 @@ public class MesoCicleService {
     @Autowired
     MesoCicleRepository mesoCicleRepository;
 
+    public MesoCicle getById(Long id){
+        return mesoCicleRepository.getById(id);
+    }
+
     public MesoCicle createMesoCicle(MesoCicle mesoCicle){
         return mesoCicleRepository.save(mesoCicle);
     }

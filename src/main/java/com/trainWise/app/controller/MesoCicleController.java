@@ -13,6 +13,11 @@ public class MesoCicleController {
     @Autowired
     MesoCicleService mesoCicleService;
 
+    @GetMapping("/{id}")
+    public MesoCicle getById(@PathVariable Long id){
+        return mesoCicleService.getById(id);
+    }
+
     @PostMapping()
     public ResponseEntity<MesoCicle> createMesoCicle(@RequestBody MesoCicle mesoCicle){
         MesoCicle newMesocicle = mesoCicleService.createMesoCicle(mesoCicle);

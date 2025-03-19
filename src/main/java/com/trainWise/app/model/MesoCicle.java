@@ -1,5 +1,6 @@
 package com.trainWise.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +14,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class MesoCicle {
 
     @Id
@@ -42,8 +44,8 @@ public class MesoCicle {
 //    @JoinColumn(name = "tainer_id", nullable = false)
 //    private Trainer trainer;
 //
-//    @ManyToOne
-//    @JoinColumn(name = "self_trainer_id", nullable = false)
-//    private SelfTrainer selfTrainer;
+    @ManyToOne
+    @JoinColumn(name = "self_trainer_id")
+    private SelfTrainer selfTrainer;
 }
 

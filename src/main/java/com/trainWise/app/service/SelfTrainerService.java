@@ -12,6 +12,14 @@ public class SelfTrainerService {
     @Autowired
     SelfTrainerRepository selfTrainerRepository;
 
+    public SelfTrainer getById(Long id){
+        return selfTrainerRepository.getById(id);
+    }
+
+    public SelfTrainer create(SelfTrainer selfTrainer){
+        return selfTrainerRepository.save(selfTrainer);
+    }
+
     public SelfTrainer update(SelfTrainer selfTrainer){
         return selfTrainerRepository.save(selfTrainer);
     }

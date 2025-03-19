@@ -1,5 +1,6 @@
 package com.trainWise.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -14,12 +15,13 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class SelfTrainer extends User{
 
-//    @OneToMany
-//    private List<MesoCicle> mesoCicle;
-//
-//    @OneToMany
-//    private List<Workout> worokoutsList;
+    @OneToMany
+    private List<MesoCicle> mesoCicle;
+
+    @OneToMany
+    private List<Workout> worokoutsList;
 
 }
