@@ -1,11 +1,13 @@
 package com.trainWise.app.model;
 
+import com.trainWise.app.model.enums.Goals;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @MappedSuperclass
 @Getter
@@ -35,4 +37,8 @@ public abstract class User {
     private double height;
 
     private double weight;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "goal")
+    private List<Goals> goals;
 }
