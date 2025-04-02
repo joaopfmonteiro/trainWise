@@ -52,5 +52,9 @@ public class UserService {
         user.setBirthDate(userDto.getBirthDate());
         user.setHeight(userDto.getHeight());
         user.setWeight(userDto.getWeight());
+        user.setGender(userDto.getGender());
+        user.setUserName(userDto.getUserName());
+        user.setGoals(userDto.getGoals());
+        user.setGoalWeight(userDto.getGoalWeight());
     }
 }

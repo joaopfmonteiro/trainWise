@@ -8,7 +8,7 @@ public enum Goals {
     LOSEWEIGHT("Lose weight"),
     MAINTEINWEIGHT("Maintain weight"),
     GAINWEIGHT("Gain weight"),
-    INCREASEFLEXIBILITY("Gain muscle"),
+    GAINMUSCLE("Gain muscle"),
     IMPROVEFLEXIBILITY("Increase flexibility"),
     IMPROVEENDURANCE("Improve endurance");
 

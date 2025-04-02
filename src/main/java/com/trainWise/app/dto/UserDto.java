@@ -1,5 +1,7 @@
 package com.trainWise.app.dto;
 
+import com.trainWise.app.model.enums.Goals;
+
 import java.util.Date;
 
 public class UserDto {
@@ -15,6 +17,48 @@ public class UserDto {
     private double height;
 
     private double weight;
+
+    private String gender;
+
+    private Goals goals;
+
+    private double goalWeight;
+
+    public double getGoalWeight() {
+        return goalWeight;
+    }
+
+    public void setGoalWeight(double goalWeight) {
+        this.goalWeight = goalWeight;
+    }
+
+    public Goals getGoals() {
+        return goals;
+    }
+
+    public void setGoals(Goals goals) {
+        this.goals = goals;
+    }
+
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    private String userName;
+
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public String getName() {
         return name;

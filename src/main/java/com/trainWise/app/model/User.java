@@ -34,11 +34,18 @@ public abstract class User {
 
     private Date birthDate;
 
+    @NotNull
+    private String userName;
+
     private double height;
 
     private double weight;
 
+    private double goalWeight;
+
+    private String gender;
+
     @Enumerated(EnumType.STRING)
-    @Column(name = "goal")
-    private List<Goals> goals;
+    @Column(name = "goals")
+    private Goals goals;
 }
