@@ -1,6 +1,7 @@
 package com.trainWise.app.controller;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.trainWise.app.dto.BmiDto;
 import com.trainWise.app.model.SelfTrainer;
 import com.trainWise.app.security.JwtService;
 import com.trainWise.app.service.SelfTrainerService;
@@ -36,11 +37,15 @@ public class SelfTrainerController {
     public ResponseEntity<SelfTrainer> getCurrentUser(@AuthenticationPrincipal UserDetails userDetails) {
 
         String email = userDetails.getUsername();
-
         SelfTrainer user = selfTrainerService.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-
         return ResponseEntity.ok(user);
+    }
+
+    @GetMapping("/bmi/{id}")
+    public ResponseEntity<BmiDto> getBmi(@PathVariable Long id){
+        BmiDto bmiDto = selfTrainerService.getBmi(id);
+        return ResponseEntity.ok(bmiDto);
     }
 
 }
