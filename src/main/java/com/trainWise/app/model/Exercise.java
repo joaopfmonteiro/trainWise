@@ -53,19 +53,19 @@ public class Exercise {
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "exercise_type", joinColumns = @JoinColumn(name = "exercise_id"))
     @Column(name = "exercise_type")
-    List<ExerciseType> exerciseTypes;
+    List<ExerciseType> exerciseType;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "equipment")
     private ExerciseEquipment equipment;
 
     public Exercise(String name, List<Muscle> muscle, List<MuscleGroup> muscleGroup,
-                    List<ExerciseType> exerciseTypes, ExerciseEquipment equipment,
+                    List<ExerciseType> exerciseType, ExerciseEquipment equipment,
                     String details, String img, String video) {
         this.name = name;
         this.muscle = muscle;
         this.muscleGroup = muscleGroup;
-        this.exerciseTypes = exerciseTypes;
+        this.exerciseType = exerciseType;
         this.equipment = equipment;
         this.details = details;
         this.img = img;

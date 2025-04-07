@@ -33,8 +33,9 @@ public class Workout {
 //    @ManyToOne
 //    private Client client;
 //
-//    @ManyToOne
-//    private SelfTrainer selfTrainer;
+    @ManyToOne
+    @JoinColumn(name = "self_trainer_id")
+    private SelfTrainer selfTrainer;
 
     @OneToMany(mappedBy = "workout", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference

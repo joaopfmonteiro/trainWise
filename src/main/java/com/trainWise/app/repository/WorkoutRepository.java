@@ -1,5 +1,6 @@
 package com.trainWise.app.repository;
 
+import com.trainWise.app.dto.CurrentWorkoutDto;
 import com.trainWise.app.dto.WorkoutDto;
 import com.trainWise.app.model.Workout;
 import jakarta.transaction.Transactional;
@@ -27,5 +28,27 @@ public interface WorkoutRepository extends JpaRepository <Workout, Long> {
             "WHERE w.id = :workoutId")
     List<WorkoutDto> findTrainingUnitDetailsByWorkoutId(@Param("workoutId") Long workoutId);
 
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE WORKOUT SET self_trainer_id = :self_trainer_id " +
+            "WHERE id = :workout_id", nativeQuery = true)
+    void addWorkoutToUser(@Param("workout_id") Long self_trainer_id, @Param("self_trainer_id") Long workout_id);
+
+    @Query(value = """
+    SELECT st.name AS name, 
+           e.equipment AS equipment, 
+           tu.reps AS reps, 
+           tu.set AS set, 
+           tu.weight AS weight, 
+           w.day AS day
+    FROM self_trainer st
+    INNER JOIN workout w ON st.id = w.self_trainer_id
+    INNER JOIN training_unit tu ON w.id = tu.workout_id
+    INNER JOIN exercise e ON tu.exercise_id = e.id
+    WHERE st.id = :id AND w.day >= CURRENT_DATE
+    ORDER BY w.day ASC
+    LIMIT 1
+    """, nativeQuery = true)
+    CurrentWorkoutDto findFirstWorkoutByDayAndUser(@Param("id") Long id);
 
 }

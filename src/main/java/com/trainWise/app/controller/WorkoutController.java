@@ -1,5 +1,6 @@
 package com.trainWise.app.controller;
 
+import com.trainWise.app.dto.CurrentWorkoutDto;
 import com.trainWise.app.dto.WorkoutDto;
 import com.trainWise.app.model.TrainingUnit;
 import com.trainWise.app.model.Workout;
@@ -36,10 +37,23 @@ public class WorkoutController {
         return ResponseEntity.ok("TrainingUnit " + trainingId + " linked to Workout " + workoutId);
     }
 
+    @PostMapping("/{workoutId}/user/{userId}")
+    public ResponseEntity<String> addWorkoutToUser(
+            @PathVariable Long userId,
+            @PathVariable Long workoutId) {
+        workoutService.addWorkoutToUser(workoutId, userId);
+        return ResponseEntity.ok("Workout have ben added");
+    }
+
     @GetMapping("/{workoutId}")
     public ResponseEntity<List<WorkoutDto>> findTrainingUnitsByWorkout(@PathVariable Long workoutId){
         List<WorkoutDto> trainingUnits = workoutService.getTrainingUnitsByWorkout(workoutId);
         return ResponseEntity.ok(trainingUnits);
     }
 
+    @GetMapping("/current-workout/{userId}")
+    public ResponseEntity<CurrentWorkoutDto> findFirstWorkoutByDayAndUser(@PathVariable Long userId){
+        CurrentWorkoutDto workout = workoutService.findFirstWorkoutByDayAndUser(userId);
+        return ResponseEntity.ok(workout);
+    }
 }

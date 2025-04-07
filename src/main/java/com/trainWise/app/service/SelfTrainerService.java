@@ -6,6 +6,8 @@ import com.trainWise.app.repository.SelfTrainerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class SelfTrainerService {
 
@@ -22,6 +24,9 @@ public class SelfTrainerService {
 
     public SelfTrainer update(SelfTrainer selfTrainer){
         return selfTrainerRepository.save(selfTrainer);
+    }
+    public Optional<SelfTrainer> findByEmail(String email) {
+        return selfTrainerRepository.findByEmail(email);
     }
 
 }

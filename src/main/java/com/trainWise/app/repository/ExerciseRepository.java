@@ -31,9 +31,9 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
     List<Exercise> filterByEquipment(@Param("equipments") List<ExerciseEquipment> equipments);
 
     @Query("SELECT DISTINCT e FROM Exercise e " +
-            "JOIN e.exerciseTypes et " +
-            "WHERE et IN (:exerciseTypes)")
-    List<Exercise> filterByExerciseType(@Param("exerciseTypes") List<ExerciseType> exerciseTypes);
+            "JOIN e.exerciseType et " +
+            "WHERE et IN (:exerciseType)")
+    List<Exercise> filterByExerciseType(@Param("exerciseType") List<ExerciseType> exerciseType);
 
     @Query("SELECT DISTINCT e FROM Exercise e " +
             "JOIN e.muscle em " +

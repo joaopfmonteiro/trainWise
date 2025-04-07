@@ -29,9 +29,9 @@ public class TrainingUnit {
 
     private int set;
 
-    private double weight;
+    private int weight;
 
-    public TrainingUnit( Exercise exercise, int reps, int set, double weight) {
+    public TrainingUnit( Exercise exercise, int reps, int set, int weight) {
         this.exercise = exercise;
         this.reps = reps;
         this.set = set;
