@@ -45,7 +45,7 @@ public class SelfTrainerService {
     public String classifyBMI(double imc, String gender){
 
         String classifyBMI = "";
-        if(gender ==  "Female"){
+        if(gender.equals("Female") ){
             if(imc < 19.0){
                 return classifyBMI ="Underweight";
             }if(imc >= 19.0 && imc < 24){
