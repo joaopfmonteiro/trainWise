@@ -31,10 +31,13 @@ public class TrainingUnit {
 
     private int weight;
 
-    public TrainingUnit( Exercise exercise, int reps, int set, int weight) {
+    private int rest;
+
+    public TrainingUnit(Exercise exercise, int reps, int set, int weight, int rest) {
         this.exercise = exercise;
         this.reps = reps;
         this.set = set;
         this.weight = weight;
+        this.rest = rest;
     }
 }

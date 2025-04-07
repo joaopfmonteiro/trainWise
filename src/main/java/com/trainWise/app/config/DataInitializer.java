@@ -74,6 +74,7 @@ public class DataInitializer {
                                 exercise.get(),
                                 3,
                                 3,
+                                3,
                                 3
                         )
                 );

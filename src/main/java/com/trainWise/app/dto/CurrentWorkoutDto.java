@@ -16,5 +16,6 @@ public class CurrentWorkoutDto {
     private int reps;
     private int set;
     private int weight;
+    private int rest;
     private Date day;
 }

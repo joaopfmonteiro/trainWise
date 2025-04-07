@@ -63,7 +63,7 @@ public class WorkoutService {
         workoutRepository.addWorkoutToUser(workoutId,userId);
     }
 
-    public CurrentWorkoutDto findFirstWorkoutByDayAndUser(Long id){
+    public List<CurrentWorkoutDto> findFirstWorkoutByDayAndUser(Long id){
         return workoutRepository.findFirstWorkoutByDayAndUser(id);
     }
 }

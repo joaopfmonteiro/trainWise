@@ -52,8 +52,8 @@ public class WorkoutController {
     }
 
     @GetMapping("/current-workout/{userId}")
-    public ResponseEntity<CurrentWorkoutDto> findFirstWorkoutByDayAndUser(@PathVariable Long userId){
-        CurrentWorkoutDto workout = workoutService.findFirstWorkoutByDayAndUser(userId);
+    public ResponseEntity<List<CurrentWorkoutDto>> findFirstWorkoutByDayAndUser(@PathVariable Long userId){
+        List<CurrentWorkoutDto> workout = workoutService.findFirstWorkoutByDayAndUser(userId);
         return ResponseEntity.ok(workout);
     }
 }

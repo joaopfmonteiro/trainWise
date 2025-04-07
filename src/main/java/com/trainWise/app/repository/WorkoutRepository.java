@@ -39,7 +39,8 @@ public interface WorkoutRepository extends JpaRepository <Workout, Long> {
            e.equipment AS equipment, 
            tu.reps AS reps, 
            tu.set AS set, 
-           tu.weight AS weight, 
+           tu.weight AS weight,
+           tu.rest AS rest, 
            w.day AS day
     FROM self_trainer st
     INNER JOIN workout w ON st.id = w.self_trainer_id
@@ -49,6 +50,6 @@ public interface WorkoutRepository extends JpaRepository <Workout, Long> {
     ORDER BY w.day ASC
     LIMIT 1
     """, nativeQuery = true)
-    CurrentWorkoutDto findFirstWorkoutByDayAndUser(@Param("id") Long id);
+    List<CurrentWorkoutDto> findFirstWorkoutByDayAndUser(@Param("id") Long id);
 
 }
