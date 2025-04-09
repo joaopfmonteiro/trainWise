@@ -30,6 +30,16 @@ public class UserDto {
 
     private double hip;
 
+    private int physicalActivity;
+
+    public int getPhysicalActivity() {
+        return physicalActivity;
+    }
+
+    public void setPhysicalActivity(int physicalActivity) {
+        this.physicalActivity = physicalActivity;
+    }
+
     public double getNeck() {
         return neck;
     }

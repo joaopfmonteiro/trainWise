@@ -2,6 +2,7 @@ package com.trainWise.app.repository;
 
 import com.trainWise.app.dto.BmiDto;
 import com.trainWise.app.dto.BodyFatMetricsDto;
+import com.trainWise.app.model.NutritionProgressDto;
 import com.trainWise.app.model.SelfTrainer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -34,4 +35,14 @@ public interface SelfTrainerRepository extends JpaRepository<SelfTrainer, Long> 
             WHERE self_trainer.id = :id
             """, nativeQuery = true)
     BodyFatMetricsDto getPersonalIfoForBodyFat(@Param("id") Long id);
+
+    @Query(value = """
+            Select self_trainer.height AS height,
+            self_trainer.weight AS weight,
+            self_trainer.gender AS gender,
+            self_trainer.birth_date AS birthDate
+            FROM self_trainer
+            WHERE self_trainer.id = :id
+            """, nativeQuery = true)
+    NutritionProgressDto getPersonalIfoForNutritionBar(@Param("id") Long id);
 }

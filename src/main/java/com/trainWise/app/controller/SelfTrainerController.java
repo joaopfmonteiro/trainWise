@@ -3,6 +3,7 @@ package com.trainWise.app.controller;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.trainWise.app.dto.BmiDto;
 import com.trainWise.app.dto.BodyFatMetricsDto;
+import com.trainWise.app.model.NutritionProgressDto;
 import com.trainWise.app.model.SelfTrainer;
 import com.trainWise.app.security.JwtService;
 import com.trainWise.app.service.SelfTrainerService;
@@ -54,4 +55,12 @@ public class SelfTrainerController {
         BodyFatMetricsDto bodyFatMetricsDto = selfTrainerService.getFodyFat(id);
         return ResponseEntity.ok(bodyFatMetricsDto);
     }
+
+    @GetMapping("total-calories/{id}")
+    public ResponseEntity<NutritionProgressDto> getTotalCaloriesForDay(@PathVariable Long id){
+        NutritionProgressDto nutritionProgressDto = selfTrainerService.getTotalCaloriesForDay(id);
+        return ResponseEntity.ok(nutritionProgressDto);
+    }
+
+
 }

@@ -31,7 +31,7 @@ public class TrainingUnitController {
         trainingUnitService.updateTrainingUnit(trainingUnit);
     }
 
-    @PutMapping("/{trainingUnitId}/{exerciseId}")
+    @PutMapping("/{trainingUnitId}/exercise/{exerciseId}")
     public  ResponseEntity<TrainingUnit> addExerciseToTraining(
             @PathVariable Long trainingUnitId,
             @PathVariable Long exerciseId){

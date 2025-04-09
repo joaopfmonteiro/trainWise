@@ -2,6 +2,7 @@ package com.trainWise.app.service;
 
 import com.trainWise.app.dto.BmiDto;
 import com.trainWise.app.dto.BodyFatMetricsDto;
+import com.trainWise.app.model.NutritionProgressDto;
 import com.trainWise.app.model.SelfTrainer;
 import com.trainWise.app.repository.SelfTrainerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -272,7 +273,47 @@ public class SelfTrainerService {
         return Period.between(birthLocalDate, today).getYears();
     }
 
-    double convertToInches(double cm) {
+    public double convertToInches(double cm) {
         return cm / 2.54;
+    }
+
+    public double  basalMetabolicRate(double weight, double height, String gender, int age){
+        double bmr = 0;
+
+        if(gender.equals("Male")){
+            bmr = 10 * weight + (6.25 * (height * 100)) - (5 * age) + 5;
+        }if(gender.equals("Female")){
+            bmr = 10 * weight + (6.25 * (height * 100)) - (5 * age) -161;
+        }
+        return bmr;
+    }
+
+    public double totalCaloriesForDay(double bmr, int sportLevel){
+        double total = 0;
+
+        if (sportLevel == 0){
+            total = bmr * 1.2;
+        }if (sportLevel == 1){
+            total = bmr * 1.2;
+        }if (sportLevel == 2){
+            total = bmr * 1.375;
+        }if (sportLevel == 3){
+            total = bmr * 1.55;
+        }if (sportLevel == 4){
+            total = bmr * 1.725;
+        }if (sportLevel == 5){
+            total = bmr * 1.9;
+        }
+        return total;
+    }
+
+    public NutritionProgressDto getTotalCaloriesForDay(Long id){
+        NutritionProgressDto dto = selfTrainerRepository.getPersonalIfoForNutritionBar(id);
+        int age = convertToAge(dto.getBirthDate());
+        double basalMetabolicRate = basalMetabolicRate(dto.getWeight(), dto.getHeight(), dto.getGender(), age);
+        double totalCaloriesForDay = totalCaloriesForDay(basalMetabolicRate,dto.getPhysicalActivity());
+        int intTotal = (int)totalCaloriesForDay;
+        dto.setTmbValue(intTotal);
+        return dto;
     }
 }

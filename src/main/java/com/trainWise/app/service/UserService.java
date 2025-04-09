@@ -67,5 +67,6 @@ public class UserService {
         user.setNeck(userDto.getNeck());
         user.setHip(userDto.getHip());
         user.setWaist(userDto.getWaist());
+        user.setPhysicalActivity(userDto.getPhysicalActivity());
     }
 }

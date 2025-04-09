@@ -35,20 +35,26 @@ public interface WorkoutRepository extends JpaRepository <Workout, Long> {
     void addWorkoutToUser(@Param("workout_id") Long self_trainer_id, @Param("self_trainer_id") Long workout_id);
 
     @Query(value = """
-    SELECT st.name AS name, 
-           e.equipment AS equipment, 
-           tu.reps AS reps, 
-           tu.set AS set, 
-           tu.weight AS weight,
-           tu.rest AS rest, 
-           w.day AS day
+    SELECT 
+        e.name AS name,
+        e.equipment AS equipment,
+        tu.reps AS reps,
+        tu.set AS set,
+        tu.weight AS weight,
+        tu.rest AS rest,
+        w.day AS day
     FROM self_trainer st
     INNER JOIN workout w ON st.id = w.self_trainer_id
     INNER JOIN training_unit tu ON w.id = tu.workout_id
     INNER JOIN exercise e ON tu.exercise_id = e.id
-    WHERE st.id = :id AND w.day >= CURRENT_DATE
+    WHERE st.id = :id
+      AND w.day = (
+          SELECT MIN(w2.day)
+          FROM workout w2
+          WHERE w2.self_trainer_id = :id
+            AND w2.day >= CURRENT_DATE
+      )
     ORDER BY w.day ASC
-    LIMIT 1
     """, nativeQuery = true)
     List<CurrentWorkoutDto> findFirstWorkoutByDayAndUser(@Param("id") Long id);
 

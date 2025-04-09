@@ -51,6 +51,8 @@ public abstract class User {
 
     private double hip;
 
+    private int physicalActivity;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "goals")
     private Goals goals;
