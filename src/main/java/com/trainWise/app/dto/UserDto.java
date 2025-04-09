@@ -24,6 +24,36 @@ public class UserDto {
 
     private double goalWeight;
 
+    private double neck;
+
+    private double waist;
+
+    private double hip;
+
+    public double getNeck() {
+        return neck;
+    }
+
+    public void setNeck(double neck) {
+        this.neck = neck;
+    }
+
+    public double getWaist() {
+        return waist;
+    }
+
+    public void setWaist(double waist) {
+        this.waist = waist;
+    }
+
+    public double getHip() {
+        return hip;
+    }
+
+    public void setHip(double hip) {
+        this.hip = hip;
+    }
+
     public double getGoalWeight() {
         return goalWeight;
     }

@@ -45,6 +45,12 @@ public abstract class User {
 
     private String gender;
 
+    private double neck;
+
+    private double waist;
+
+    private double hip;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "goals")
     private Goals goals;

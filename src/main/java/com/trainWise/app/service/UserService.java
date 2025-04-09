@@ -64,5 +64,8 @@ public class UserService {
         user.setUserName(userDto.getUserName());
         user.setGoals(userDto.getGoals());
         user.setGoalWeight(userDto.getGoalWeight());
+        user.setNeck(userDto.getNeck());
+        user.setHip(userDto.getHip());
+        user.setWaist(userDto.getWaist());
     }
 }
